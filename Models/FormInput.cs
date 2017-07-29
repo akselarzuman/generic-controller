@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GenericVC.Models
+namespace GenericController.Models
 {
     public class FormInput
     {
@@ -17,7 +18,12 @@ namespace GenericVC.Models
         [Required]
         public short Order { get; set; }
         [ForeignKey("FormInput")]
-        public long ParentID { get; set; }
+        public long? ParentID { get; set; }
         public bool IsActive { get; set; }
+
+        public virtual Form Form { get; set; }
+        public virtual Input Input { get; set; }
+        public virtual FormInput Parent { get; set; }
+        //public virtual ICollection<FormInput> InverseParent { get; set; }
     }
 }

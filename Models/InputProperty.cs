@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GenericVC.Models
+namespace GenericController.Models
 {
     public class InputProperty
     {
@@ -15,5 +15,7 @@ namespace GenericVC.Models
         public string PropertyName { get; set; }
         [Required]
         public string PropertyValue { get; set; }
+
+        public virtual Input Input { get; set; }
     }
 }

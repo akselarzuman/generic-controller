@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GenericVC.Models
+namespace GenericController.Models
 {
     public class Form
     {
@@ -11,5 +12,7 @@ namespace GenericVC.Models
         [Required]
         public string Name { get; set; }
         public string Script { get; set; }
+
+        public virtual ICollection<FormInput> FormInput { get; set; }
     }
 }

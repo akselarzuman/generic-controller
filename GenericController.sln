@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericVC", "GenericVC.csproj", "{F310CB9C-2F20-4D97-9F77-08343A1F19E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericController", "GenericController.csproj", "{F310CB9C-2F20-4D97-9F77-08343A1F19E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

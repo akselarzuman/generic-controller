@@ -2,13 +2,13 @@ using System.Text;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace GenericVC
+namespace GenericController
 {
     public class HtmlParser
     {
         public string GenerateForm(dynamic form)
         {
-            if (form == null || form.Inputs == null || form.Inputs.Count == 0)
+            if (form == null || form.Inputs == null)
             {
                 return string.Empty;
             }
@@ -21,7 +21,7 @@ namespace GenericVC
             return builder.ToString();
         }
 
-        private string GenerateHtml(List<dynamic> inputs, long parentContainerId = 0)
+        private string GenerateHtml(List<dynamic> inputs, long? parentContainerId = null)
         {
             StringBuilder builder = new StringBuilder();
 
@@ -34,24 +34,39 @@ namespace GenericVC
 
                 string type = input[0].Type;
 
-                if (type == "label" || type == "option" || type=="a")
+                if (type == "label" || type == "option" || type=="a" || type == "span")
                 {
-                    builder.AppendLine($"<{type} {GenerateProperties(inputs.Where(m => m.Id == input[0].Id && m.PropertyName != "text" && m.PropertyName != string.Empty).ToList())}>{input.Where(m => m.PropertyName == "text").First().PropertyValue}</{type}>");
-                }
-                else if (type == "button")
-                {
-                    if (inputs.Any(m => m.Id == input[0].Id && m.PropertyName == "text"))
+                    var propertyList = new List<dynamic>(input.First().InputProperties);
+
+                    var propListWoutText = propertyList.Where(m=>m.PropertyName!="text" && m.PropertyName!=string.Empty).ToList();
+
+                    if (propertyList.Any(m => m.PropertyName == "text"))
                     {
-                        builder.AppendLine($"<{type} {GenerateProperties(inputs.Where(m => m.Id == input[0].Id && m.PropertyName != "text" && m.PropertyName != string.Empty).ToList())}>{input.Where(m => m.PropertyName == "text").First().PropertyValue}</{type}>");
+                        builder.AppendLine($"<{type}{GenerateProperties(propListWoutText)}>{propertyList.Where(m => m.PropertyName == "text").First().PropertyValue}</{type}>");
                     }
                     else
                     {
-                        builder.AppendLine($"<{type} {GenerateProperties(inputs.Where(m => m.Id == input[0].Id && m.PropertyName != string.Empty).ToList())}>{GenerateHtml(inputs, input[0].Id)}</{type}>");
+                        builder.AppendLine($"<{type}{GenerateProperties(propListWoutText)}>{GenerateHtml(inputs, input[0].Id)}</{type}>");
                     }
                 }
+                //else if (type == "button")
+                //{
+                //    if (inputs.Any(m => m.Id == input[0].Id && m.PropertyName == "text"))
+                //    {
+                //        var propertyList = new List<dynamic>(input.First().InputProperties);
+
+                //        propertyList = propertyList.Where(m => m.PropertyName != "text" && m.PropertyName != string.Empty).ToList();
+
+                //        builder.AppendLine($"<{type} {GenerateProperties(propertyList)}>{input.Where(m => m.PropertyName == "text").First().PropertyValue}</{type}>");
+                //    }
+                //    else
+                //    {
+                //        builder.AppendLine($"<{type} {GenerateProperties(inputs.Where(m => m.Id == input[0].Id && m.PropertyName != string.Empty).ToList())}>{GenerateHtml(inputs, input[0].Id)}</{type}>");
+                //    }
+                //}
                 else
                 {
-                    builder.AppendLine($"<{type} {GenerateProperties(inputs.Where(m => m.Id == input[0].Id && m.PropertyName != string.Empty).ToList())}>{GenerateHtml(inputs, input[0].Id)}</{type}>");
+                    builder.AppendLine($"<{type}{GenerateProperties(new List<dynamic>(input.First().InputProperties))}>{GenerateHtml(inputs, input[0].Id)}</{type}>");
                 }
             }
 

@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using GenericVC.DataAccess;
+using GenericController.DataAccess;
 
-namespace GenericVC
+namespace GenericController
 {
     public class Startup
     {
@@ -29,7 +29,7 @@ namespace GenericVC
             services.AddMvc();
 
             //add sqlite service
-            services.AddDbContext<Context.GenericVCContext>(m =>m.UseSqlite("Data Source = GenericVC.db"));
+            services.AddDbContext<Context.GenericControllerContext>(m =>m.UseSqlite("Data Source = GenericController.db"));
 
             services.AddScoped<IRepository, Repository>();
         }

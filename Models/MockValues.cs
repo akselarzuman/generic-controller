@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
-using GenericVC.Context;
+using GenericController.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GenericVC.Models
+namespace GenericController.Models
 {
     public class MockValues
     {
@@ -12,7 +12,7 @@ namespace GenericVC.Models
 
         public void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new GenericVCContext(serviceProvider.GetRequiredService<DbContextOptions<GenericVCContext>>()))
+            using (var context = new GenericControllerContext(serviceProvider.GetRequiredService<DbContextOptions<GenericControllerContext>>()))
             {
                 if (context.Form.Any() && context.FormInput.Any() && context.Input.Any() && context.InputProperty.Any())
                 {
@@ -111,6 +111,42 @@ namespace GenericVC.Models
                             ID = 13,
                             Type = "a",
                             Description = "Visual Studio link"
+                        },
+                        new Input
+                        {
+                            ID = 14,
+                            Type = "a",
+                            Description = "Previous"
+                        },
+                        new Input
+                        {
+                            ID = 15,
+                            Type = "span",
+                            Description = "Left span"
+                        },
+                        new Input
+                        {
+                            ID = 16,
+                            Type = "span",
+                            Description = "Previous text"
+                        },
+                        new Input
+                        {
+                            ID = 17,
+                            Type = "a",
+                            Description = "Next"
+                        },
+                        new Input
+                        {
+                            ID = 18,
+                            Type = "span",
+                            Description = "Next span"
+                        },
+                        new Input
+                        {
+                            ID = 19,
+                            Type = "span",
+                            Description = "Next text"
                         }
                         );
                     }
@@ -213,7 +249,7 @@ namespace GenericVC.Models
                             ID = 13,
                             InputID = 6,
                             PropertyName = "class",
-                            PropertyValue = "item-active"
+                            PropertyValue = "item active"
                         },
                         //banner 1 img
                         new InputProperty
@@ -325,6 +361,118 @@ namespace GenericVC.Models
                             InputID = 13,
                             PropertyName = "text",
                             PropertyValue = "Learn More"
+                        },
+                        new InputProperty
+                        {
+                            ID = 29,
+                            InputID = 14,
+                            PropertyName = "class",
+                            PropertyValue = "left carousel-control"
+                        },
+                        new InputProperty
+                        {
+                            ID = 30,
+                            InputID = 14,
+                            PropertyName = "href",
+                            PropertyValue = "#myCarousel"
+                        },
+                        new InputProperty
+                        {
+                            ID = 31,
+                            InputID = 14,
+                            PropertyName = "role",
+                            PropertyValue = "button"
+                        },
+                        new InputProperty
+                        {
+                            ID = 32,
+                            InputID = 14,
+                            PropertyName = "data-slide",
+                            PropertyValue = "prev"
+                        },
+                        new InputProperty
+                        {
+                            ID = 33,
+                            InputID = 15,
+                            PropertyName = "class",
+                            PropertyValue = "glyphicon glyphicon-chevron-left"
+                        },
+                        new InputProperty
+                        {
+                            ID = 34,
+                            InputID = 15,
+                            PropertyName = "aria-hidden",
+                            PropertyValue = "true"
+                        },
+                        new InputProperty
+                        {
+                            ID = 35,
+                            InputID = 16,
+                            PropertyName = "class",
+                            PropertyValue = "sr-only"
+                        },
+                        new InputProperty
+                        {
+                            ID = 36,
+                            InputID = 16,
+                            PropertyName = "text",
+                            PropertyValue = "Previous"
+                        },
+                        new InputProperty
+                        {
+                            ID = 37,
+                            InputID = 17,
+                            PropertyName = "class",
+                            PropertyValue = "right carousel-control"
+                        },
+                        new InputProperty
+                        {
+                            ID = 38,
+                            InputID = 17,
+                            PropertyName = "href",
+                            PropertyValue = "#myCarousel"
+                        },
+                        new InputProperty
+                        {
+                            ID = 39,
+                            InputID = 17,
+                            PropertyName = "role",
+                            PropertyValue = "button"
+                        },
+                        new InputProperty
+                        {
+                            ID = 40,
+                            InputID = 17,
+                            PropertyName = "data-slide",
+                            PropertyValue = "next"
+                        },
+                        new InputProperty
+                        {
+                            ID = 41,
+                            InputID = 18,
+                            PropertyName = "class",
+                            PropertyValue = "glyphicon glyphicon-chevron-right"
+                        },
+                        new InputProperty
+                        {
+                            ID = 42,
+                            InputID = 18,
+                            PropertyName = "aria-hidden",
+                            PropertyValue = "true"
+                        },
+                        new InputProperty
+                        {
+                            ID = 43,
+                            InputID = 19,
+                            PropertyName = "class",
+                            PropertyValue = "sr-only"
+                        },
+                        new InputProperty
+                        {
+                            ID = 44,
+                            InputID = 19,
+                            PropertyName = "text",
+                            PropertyValue = "Next"
                         }
                     );
                     }
@@ -452,8 +600,8 @@ namespace GenericVC.Models
                             {
                                 ID = 14,
                                 FormID = 1,
-                                InputID = 8,
-                                ParentID = 11,
+                                InputID = 9,
+                                ParentID = 13,
                                 Order = 1400,
                                 IsActive = true
                             },
@@ -461,9 +609,63 @@ namespace GenericVC.Models
                             {
                                 ID = 15,
                                 FormID = 1,
-                                InputID = 9,
-                                ParentID = 11,
+                                InputID = 13,
+                                ParentID = 14,
                                 Order = 1500,
+                                IsActive = true
+                            },
+                            new FormInput
+                            {
+                                ID = 16,
+                                FormID = 1,
+                                InputID = 14,
+                                ParentID = 1,
+                                Order = 1600,
+                                IsActive = true
+                            },
+                            new FormInput
+                            {
+                                ID = 17,
+                                FormID = 1,
+                                InputID = 15,
+                                ParentID = 16,
+                                Order = 1700,
+                                IsActive = true
+                            },
+                            new FormInput
+                            {
+                                ID = 18,
+                                FormID = 1,
+                                InputID = 16,
+                                ParentID = 16,
+                                Order = 1800,
+                                IsActive = true
+                            },
+                            new FormInput
+                            {
+                                ID = 19,
+                                FormID = 1,
+                                InputID = 17,
+                                ParentID = 1,
+                                Order = 1900,
+                                IsActive = true
+                            },
+                            new FormInput
+                            {
+                                ID = 20,
+                                FormID = 1,
+                                InputID = 18,
+                                ParentID = 19,
+                                Order = 2000,
+                                IsActive = true
+                            },
+                            new FormInput
+                            {
+                                ID = 21,
+                                FormID = 1,
+                                InputID = 19,
+                                ParentID = 19,
+                                Order = 2100,
                                 IsActive = true
                             }
                         );

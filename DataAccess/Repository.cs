@@ -1,16 +1,16 @@
-using GenericVC.Context;
-using GenericVC.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using GenericController.Context;
+using GenericController.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace GenericVC.DataAccess
+namespace GenericController.DataAccess
 {
     public class Repository : IRepository
     {
-        private readonly GenericVCContext _dbContext;
+        private readonly GenericControllerContext _dbContext;
 
-        public Repository(GenericVCContext dbContext)
+        public Repository(GenericControllerContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -22,6 +22,39 @@ namespace GenericVC.DataAccess
 
         public dynamic RetrieveFormInputs(long formId)
         {
+           return _dbContext.FormInput
+                .Where(m => m.FormID == formId && m.IsActive)
+                .OrderBy(m => m.Order)
+                .Include(m => m.Input)
+                .ThenInclude(m => m.InputProperty)
+                 .Select(
+                    m =>
+                        new
+                        {
+                            Id = m.ID,
+                            //InputId = m.InputID,
+                            ParentId = m.ParentID,
+                            Type = m.Input.Type,
+                            InputProperties = m.Input.InputProperty
+                        }
+                );
+
+
+            //var res = _dbContext.FormInput.Where(m => m.FormID == formId)
+            //    .Include(m => m.Input)
+            //    .ThenInclude(m => m.InputProperty)
+            //    .Select(m =>
+            //    new
+            //    {
+            //        Id = m.ID,
+            //        //InputId = m.InputID,
+            //        ParentId = m.ParentID,
+            //        Type = m.Input.Type,
+            //        PropertyName = m.Input.InputProperty.FirstOrDefault().PropertyName,
+            //        PropertyValue = m.Input.InputProperty.FirstOrDefault().PropertyValue
+            //    });
+
+
             var query =
                 (_dbContext.FormInput.Where(m => m.FormID == formId && m.IsActive == true).OrderBy(m => m.Order)
                 .Join

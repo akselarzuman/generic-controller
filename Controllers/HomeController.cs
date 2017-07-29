@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GenericVC.DataAccess;
+using GenericController.DataAccess;
 
-namespace GenericVC.Controllers
+namespace GenericController.Controllers
 {
     public class HomeController : Controller
     {

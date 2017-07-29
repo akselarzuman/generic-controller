@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "GenericVC": {
+    "GenericController": {
       "commandName": "Project"
     }
   }

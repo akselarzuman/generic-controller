@@ -2,7 +2,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GenericVC.Context
+namespace GenericController.Context
 {
     public class DbInitializer
     {
@@ -10,8 +10,8 @@ namespace GenericVC.Context
 
         public void EnsureCreted(IServiceProvider serviceProvider)
         {
-            var context = new GenericVCContext(
-                serviceProvider.GetRequiredService<DbContextOptions<GenericVCContext>>()
+            var context = new GenericControllerContext(
+                serviceProvider.GetRequiredService<DbContextOptions<GenericControllerContext>>()
                 );
             context.Database.EnsureCreated();
         }

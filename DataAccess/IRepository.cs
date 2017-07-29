@@ -1,4 +1,4 @@
-﻿namespace GenericVC.DataAccess
+﻿namespace GenericController.DataAccess
 {
     public interface IRepository
     {
