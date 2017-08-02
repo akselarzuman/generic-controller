@@ -9919,16 +9919,16 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/GenericController.csproj",
-      "projectName": "GenericController",
-      "projectPath": "/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/GenericController.csproj",
+      "projectUniqueName": "/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/GenericController.Web.csproj",
+      "projectName": "GenericController.Web",
+      "projectPath": "/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/GenericController.Web.csproj",
       "outputPath": "/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/obj/",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
       ],
       "files": {
-        "lib/netcoreapp1.1/GenericController.dll": "/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/bin/placeholder/netcoreapp1.1/GenericController.dll"
+        "lib/netcoreapp1.1/GenericController.Web.dll": "/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/bin/placeholder/netcoreapp1.1/GenericController.Web.dll"
       },
       "frameworks": {
         "netcoreapp1.1": {

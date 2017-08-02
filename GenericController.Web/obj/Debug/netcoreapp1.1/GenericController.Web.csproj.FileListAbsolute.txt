@@ -1,0 +1,8 @@
+/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/bin/Debug/netcoreapp1.1/GenericController.Web.deps.json
+/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/bin/Debug/netcoreapp1.1/GenericController.Web.runtimeconfig.json
+/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/bin/Debug/netcoreapp1.1/GenericController.Web.runtimeconfig.dev.json
+/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/bin/Debug/netcoreapp1.1/GenericController.Web.dll
+/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/bin/Debug/netcoreapp1.1/GenericController.Web.pdb
+/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/obj/Debug/netcoreapp1.1/GenericController.Web.AssemblyInfo.cs
+/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/obj/Debug/netcoreapp1.1/GenericController.Web.dll
+/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Web/obj/Debug/netcoreapp1.1/GenericController.Web.pdb
