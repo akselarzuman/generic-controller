@@ -7,16 +7,16 @@ namespace GenericController.Framework
 {
     public class HtmlParser
     {
-        public string GenerateForm(dynamic form)
+        public string GenerateForm(View view)
         {
-            if (form == null || form.Inputs == null)
+            if (view == null || view.Inputs == null)
             {
                 return string.Empty;
             }
 
             StringBuilder builder = new StringBuilder();
 
-            builder.AppendLine(GenerateHtml(new List<FormInputList>(form.Inputs)));
+            builder.AppendLine(GenerateHtml(view.Inputs));
 
             //builder.AppendLine(form.Script);
             return builder.ToString();
@@ -37,7 +37,7 @@ namespace GenericController.Framework
 
                 if (type == "label" || type == "option" || type=="a" || type == "span")
                 {
-                    var propertyList = new List<InputProperty>(input.First().InputProperties);
+                    var propertyList = input.First().InputProperties;
 
                     var propListWoutText = propertyList.Where(m=>m.PropertyName!="text" && m.PropertyName!=string.Empty).ToList();
 
@@ -67,7 +67,7 @@ namespace GenericController.Framework
                 //}
                 else
                 {
-                    builder.AppendLine($"<{type}{GenerateProperties(new List<InputProperty>(input.First().InputProperties))}>{GenerateHtml(inputs, input[0].Id)}</{type}>");
+                    builder.AppendLine($"<{type}{GenerateProperties(input.First().InputProperties)}>{GenerateHtml(inputs, input[0].Id)}</{type}>");
                 }
             }
 

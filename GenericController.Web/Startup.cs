@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using GenericController.DataAccess;
+using GenericController.Repository;
 
 namespace GenericController
 {
@@ -29,9 +29,9 @@ namespace GenericController
             services.AddMvc();
 
             //add sqlite service
-            services.AddDbContext<Context.GenericControllerContext>(m =>m.UseSqlite("Data Source = GenericController.db"));
+            services.AddDbContext<GenericControllerContext>(m =>m.UseSqlite("Data Source = GenericController.db"));
 
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IGcRepository, GcRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

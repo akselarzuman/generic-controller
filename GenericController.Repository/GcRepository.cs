@@ -19,24 +19,30 @@ namespace GenericController.Repository
             return _dbContext.Form.Single(m => m.ID == formId).Script;
         }
 
-        public dynamic RetrieveFormInputs(long formId)
+        public View RetrieveFormInputs(long formId)
         {
-           return _dbContext.FormInput
+           var inputs = _dbContext.FormInput
                 .Where(m => m.FormID == formId && m.IsActive)
                 .OrderBy(m => m.Order)
                 .Include(m => m.Input)
                 .ThenInclude(m => m.InputProperty)
                  .Select(
                     m =>
-                        new
+                        new FormInputList
                         {
                             Id = m.ID,
                             //InputId = m.InputID,
                             ParentId = m.ParentID,
                             Type = m.Input.Type,
-                            InputProperties = m.Input.InputProperty
+                            InputProperties = m.Input.InputProperty.ToList()
                         }
-                );
+                ).ToList();
+
+                return new View
+                {
+                    Inputs = inputs,
+                    Form=new Form()
+                };
         }
 
         private IEnumerable<InputProperty> RetrieveInputProperties(long inputId)

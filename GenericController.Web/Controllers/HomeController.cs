@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GenericController.DataAccess;
+using GenericController.Repository;
+using GenericController.Framework;
 
 namespace GenericController.Controllers
 {
     public class HomeController : Controller
     {
-        private IRepository _repo;
-        public HomeController(IRepository repo)
+        private IGcRepository _repo;
+        public HomeController(IGcRepository repo)
         {
             this._repo = repo;
         }
@@ -19,7 +20,7 @@ namespace GenericController.Controllers
 
             var formInputs = _repo.RetrieveFormInputs(1);
             
-            string html = new HtmlParser().GenerateForm(new { Inputs = formInputs });
+            string html = new HtmlParser().GenerateForm(formInputs);
 
             return View("Index",html);
         }

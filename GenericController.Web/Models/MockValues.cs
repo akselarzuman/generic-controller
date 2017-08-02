@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
-using GenericController.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using GenericController.Context;
+using GenericController.Repository;
+using GenericController.Entities;
 
 namespace GenericController.Models
 {

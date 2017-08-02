@@ -7,6 +7,6 @@ namespace GenericController.Entities
         public long Id { get; set; }
         public string Type { get; set; }
         public List<InputProperty> InputProperties { get; set; }
-        public long ParentId { get; set; }
+        public long? ParentId { get; set; }
     }
 }
