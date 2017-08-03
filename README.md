@@ -1,2 +1,2 @@
 # generic-controller
-An Asp.Net Mvc application in which views are created from the database.
+An Asp.Net Mvc application in which views are generated from the database.
