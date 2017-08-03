@@ -1,8 +1,0 @@
-/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Framework/bin/Debug/netstandard1.4/GenericController.Framework.deps.json
-/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Framework/obj/Debug/netstandard1.4/GenericController.Framework.AssemblyInfo.cs
-/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Framework/bin/Debug/netstandard1.4/GenericController.Framework.dll
-/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Framework/bin/Debug/netstandard1.4/GenericController.Framework.pdb
-/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Framework/obj/Debug/netstandard1.4/GenericController.Framework.dll
-/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Framework/obj/Debug/netstandard1.4/GenericController.Framework.pdb
-/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Framework/bin/Debug/netstandard1.4/GenericController.Entities.dll
-/Users/akselarzuman/Documents/GitHub/generic-controller-test/GenericController.Framework/bin/Debug/netstandard1.4/GenericController.Entities.pdb
