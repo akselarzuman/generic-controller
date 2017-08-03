@@ -25,8 +25,7 @@ namespace GenericController.Framework
         private string GenerateHtml(List<FormInputList> inputs, long? parentContainerId = null)
         {
             StringBuilder builder = new StringBuilder();
-
-            //gruplama yapılıyor. Örneğin selectoption'un birden fazla property ve valuesu olabilir. bunu düzgün oluşturabilmek için
+            
             var groupedModels = inputs.Where(m => m.ParentId == parentContainerId).GroupBy(m => m.Id).Select(m => m.First()).ToList();
 
             foreach (var groupedModel in groupedModels)
@@ -50,21 +49,6 @@ namespace GenericController.Framework
                         builder.AppendLine($"<{type}{GenerateProperties(propListWoutText)}>{GenerateHtml(inputs, input[0].Id)}</{type}>");
                     }
                 }
-                //else if (type == "button")
-                //{
-                //    if (inputs.Any(m => m.Id == input[0].Id && m.PropertyName == "text"))
-                //    {
-                //        var propertyList = new List<dynamic>(input.First().InputProperties);
-
-                //        propertyList = propertyList.Where(m => m.PropertyName != "text" && m.PropertyName != string.Empty).ToList();
-
-                //        builder.AppendLine($"<{type} {GenerateProperties(propertyList)}>{input.Where(m => m.PropertyName == "text").First().PropertyValue}</{type}>");
-                //    }
-                //    else
-                //    {
-                //        builder.AppendLine($"<{type} {GenerateProperties(inputs.Where(m => m.Id == input[0].Id && m.PropertyName != string.Empty).ToList())}>{GenerateHtml(inputs, input[0].Id)}</{type}>");
-                //    }
-                //}
                 else
                 {
                     builder.AppendLine($"<{type}{GenerateProperties(input.First().InputProperties)}>{GenerateHtml(inputs, input[0].Id)}</{type}>");
