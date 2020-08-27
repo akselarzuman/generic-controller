@@ -2,10 +2,11 @@ using System.Text;
 using System.Linq;
 using System.Collections.Generic;
 using GenericController.Repository.Entities;
+using GenericController.Framework.Contracts;
 
 namespace GenericController.Framework
 {
-    public class HtmlParser
+    public class HtmlGenerator : IHtmlGenerator
     {
         public string GenerateForm(View view)
         {
@@ -18,6 +19,7 @@ namespace GenericController.Framework
 
             builder.AppendLine(GenerateHtml(view.Inputs));
 
+            // add scripts if any
             //builder.AppendLine(form.Script);
             return builder.ToString();
         }
@@ -64,7 +66,7 @@ namespace GenericController.Framework
 
             foreach (var input in inputs)
             {
-                builder.Append($" {input.PropertyName}=\"{input.PropertyValue}\"");
+                builder.Append($" {input.PropertyName}={input.PropertyValue}");
             }
 
             return builder.ToString();

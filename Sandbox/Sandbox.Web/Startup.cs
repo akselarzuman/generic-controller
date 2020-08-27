@@ -1,4 +1,6 @@
 using System;
+using GenericController.Framework;
+using GenericController.Framework.Contracts;
 using GenericController.Repository;
 using GenericController.Repository.Contracts;
 using Microsoft.AspNetCore.Builder;
@@ -25,7 +27,9 @@ namespace Sandbox.Web
         {
             services.AddControllersWithViews();
             services.AddDbContext<GenericControllerContext>(m => m.UseSqlite("Data Source = GenericController.db"));
-            services.AddScoped<IGcRepository, GcRepository>();
+            services
+                .AddScoped<IGcRepository, GcRepository>()
+                .AddScoped<IHtmlGenerator, HtmlGenerator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

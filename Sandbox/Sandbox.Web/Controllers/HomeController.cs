@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using GenericController.Framework;
+using GenericController.Framework.Contracts;
 using GenericController.Repository.Contracts;
 using GenericController.Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -13,29 +13,29 @@ namespace Sandbox.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IGcRepository _repo;
-        private readonly HtmlParser _parser;
+        private readonly IHtmlGenerator _generator;
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(IGcRepository repo,
-            HtmlParser parser,
+            IHtmlGenerator generator,
             ILogger<HomeController> logger)
         {
             _repo = repo;
-            _parser = parser;
+            _generator = generator;
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            string formScript = await _repo.RetrieveFormScriptAsync(1);
-            List<FormInputList> formInputs = await _repo.RetrieveFormInputsAsync(1);
+            string formScript = _repo.RetrieveFormScriptAsync(1).Result;
+            List<FormInputList> formInputs = _repo.RetrieveFormInputsAsync(1).Result;
             var view = new View
             {
                 Inputs = formInputs,
                 Form = new FormEntity()
             };
 
-            string html = new HtmlParser().GenerateForm(view);
+            string html = _generator.GenerateForm(view);
 
             return View("Index", html);
         }
