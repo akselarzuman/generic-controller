@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using GenericController.Entities;
+using GenericController.Repository.Entities;
 
 namespace GenericController.Repository
 {
@@ -9,9 +9,12 @@ namespace GenericController.Repository
         {
         }
 
-        public DbSet<Form> Form { get; set; }
-        public DbSet<FormInput> FormInput { get; set; }
-        public DbSet<Input> Input { get; set; }
-        public DbSet<InputProperty> InputProperty { get; set; }        
+        public DbSet<FormEntity> Forms { get; set; }
+
+        public DbSet<FormInputEntity> FormInputs { get; set; }
+        
+        public DbSet<InputEntity> Inputs { get; set; }
+        
+        public DbSet<InputPropertyEntity> InputProperties { get; set; }        
     }
 }

@@ -1,7 +1,7 @@
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
-using GenericController.Entities;
+using GenericController.Repository.Entities;
 
 namespace GenericController.Framework
 {
@@ -25,7 +25,7 @@ namespace GenericController.Framework
         private string GenerateHtml(List<FormInputList> inputs, long? parentContainerId = null)
         {
             StringBuilder builder = new StringBuilder();
-            
+
             var groupedModels = inputs.Where(m => m.ParentId == parentContainerId).GroupBy(m => m.Id).Select(m => m.First()).ToList();
 
             foreach (var groupedModel in groupedModels)
@@ -34,11 +34,11 @@ namespace GenericController.Framework
 
                 string type = input[0].Type;
 
-                if (type == "label" || type == "option" || type=="a" || type == "span")
+                if (type == "label" || type == "option" || type == "a" || type == "span")
                 {
                     var propertyList = input.First().InputProperties;
 
-                    var propListWoutText = propertyList.Where(m=>m.PropertyName!="text" && m.PropertyName!=string.Empty).ToList();
+                    var propListWoutText = propertyList.Where(m => m.PropertyName != "text" && m.PropertyName != string.Empty).ToList();
 
                     if (propertyList.Any(m => m.PropertyName == "text"))
                     {
@@ -58,7 +58,7 @@ namespace GenericController.Framework
             return builder.ToString();
         }
 
-        private string GenerateProperties(List<InputProperty> inputs)
+        private string GenerateProperties(List<InputPropertyEntity> inputs)
         {
             StringBuilder builder = new StringBuilder();
 

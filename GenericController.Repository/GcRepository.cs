@@ -1,7 +1,9 @@
 using System.Linq;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using GenericController.Entities;
+using GenericController.Repository.Contracts;
+using GenericController.Repository.Entities;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace GenericController.Repository
 {
@@ -14,42 +16,31 @@ namespace GenericController.Repository
             _dbContext = dbContext;
         }
 
-        public string RetrieveForm(long formId)
+        public Task<string> RetrieveFormScriptAsync(long formId)
         {
-            return _dbContext.Form.Single(m => m.ID == formId).Script;
+            return _dbContext.Forms.Where(m => m.ID == formId).Select(m => m.Script).SingleOrDefaultAsync();
         }
 
-        public View RetrieveFormInputs(long formId)
+        public Task<List<FormInputList>> RetrieveFormInputsAsync(long formId)
         {
-           var inputs = _dbContext.FormInput
-                .Where(m => m.FormID == formId && m.IsActive)
-                .OrderBy(m => m.Order)
-                .Include(m => m.Input)
-                .ThenInclude(m => m.InputProperty)
-                 .Select(
-                    m =>
-                        new FormInputList
-                        {
-                            Id = m.ID,
-                            //InputId = m.InputID,
-                            ParentId = m.ParentID,
-                            Type = m.Input.Type,
-                            InputProperties = m.Input.InputProperty.ToList()
-                        }
-                ).ToList();
+            Task<List<FormInputList>> inputs = _dbContext.FormInputs
+                                 .Where(m => m.FormID == formId && m.IsActive)
+                                 .OrderBy(m => m.Order)
+                                 .Include(m => m.Input)
+                                 .ThenInclude(m => m.InputProperty)
+                                  .Select(
+                                     m =>
+                                         new FormInputList
+                                         {
+                                             Id = m.ID,
+                                             //InputId = m.InputID,
+                                             ParentId = m.ParentID,
+                                             Type = m.Input.Type,
+                                             InputProperties = m.Input.InputProperty.ToList()
+                                         }
+                                 ).ToListAsync();
 
-                return new View
-                {
-                    Inputs = inputs,
-                    Form=new Form()
-                };
-        }
-
-        private IEnumerable<InputProperty> RetrieveInputProperties(long inputId)
-        {
-            var query = _dbContext.InputProperty.Where(m => m.InputID == inputId);
-
-            return query;
+            return inputs;
         }
     }
 }
